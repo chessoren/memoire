@@ -13,7 +13,8 @@ Backends:
 Demo content only: in production, Mémoire never synthesises a storyteller's
 voice — every archive answer is an excerpt of a real call recording.
 """
-import argparse, base64, json, os, struct, subprocess, sys, tempfile, urllib.request, wave
+import argparse, base64, json, os, struct, subprocess, sys, tempfile, time, urllib.error, urllib.request, wave
+from concurrent.futures import ThreadPoolExecutor
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(ROOT, "scripts", "stories.source.json")
@@ -61,8 +62,15 @@ def tts_gemini(text, out_wav, voice, style, model):
     }
     req = urllib.request.Request(url, data=json.dumps(body).encode(),
                                  headers={"Content-Type": "application/json", "x-goog-api-key": key})
-    with urllib.request.urlopen(req, timeout=120) as r:
-        data = json.load(r)
+    for attempt in range(12):
+        try:
+            with urllib.request.urlopen(req, timeout=120) as r:
+                data = json.load(r)
+            break
+        except urllib.error.HTTPError as e:
+            if e.code in (429, 500, 503) and attempt < 11:
+                time.sleep(min(30, 4 + attempt * 4)); continue
+            raise
     part = data["candidates"][0]["content"]["parts"][0]["inlineData"]
     raw = base64.b64decode(part["data"])
     mime = part.get("mimeType", "")
@@ -97,23 +105,35 @@ def main():
     src = json.load(open(SRC))
     os.makedirs(AUDIO_DIR, exist_ok=True)
     os.makedirs(CACHE, exist_ok=True)
-    voice = args.voice or ("Grandma (English (UK))" if args.backend == "say" else "Sulafat")
+    voice = args.voice or ("Grandma (English (UK))" if args.backend == "say" else "Gacrux")
     style = "warm, unhurried, remembering fondly with a smile, light French accent, natural pauses"
     only = set(args.only.split(",")) if args.only else None
     silence = b"\x00\x00" * int(RATE * PAUSE)
 
-    out = {"storyteller": src["storyteller"], "stories": []}
+    # Synthesize every missing sentence in parallel, then assemble.
+    jobs = []
     for story in src["stories"]:
-        frames, segments, t = b"", [], 0.0
-        regenerate = only is None or story["id"] in only
+        regenerate = only is not None and story["id"] in only
         for i, sentence in enumerate(story["sentences"]):
             wav = os.path.join(CACHE, f"{args.backend}-{story['id']}-{i}.wav")
             if regenerate or not os.path.exists(wav):
-                print(f"  {story['id']}[{i}] …", flush=True)
-                if args.backend == "say":
-                    tts_say(sentence, wav, voice)
-                else:
-                    tts_gemini(sentence, wav, voice, style, args.model)
+                jobs.append((sentence, wav))
+    def synth(job):
+        sentence, wav = job
+        if args.backend == "say":
+            tts_say(sentence, wav, voice)
+        else:
+            tts_gemini(sentence, wav, voice, style, args.model)
+        print("  ok", os.path.basename(wav), flush=True)
+    with ThreadPoolExecutor(max_workers=1 if args.backend == "say" else 2) as pool:
+        list(pool.map(synth, jobs))
+
+    out = {"storyteller": src["storyteller"], "stories": []}
+    for story in src["stories"]:
+        frames, segments, t = b"", [], 0.0
+        regenerate = only is not None and story["id"] in only
+        for i, sentence in enumerate(story["sentences"]):
+            wav = os.path.join(CACHE, f"{args.backend}-{story['id']}-{i}.wav")
             pcm, dur = read_frames(wav)
             segments.append({"text": sentence, "start": round(t, 3), "end": round(t + dur, 3)})
             frames += pcm + silence

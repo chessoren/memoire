@@ -64,9 +64,21 @@ enum GeminiText {
         return try await generate(system: system, prompt: dossier, schema: nil)
     }
 
+    /// Flash first; if Google reports it saturated, fall back to lighter models rather than lose the chapter.
     private static func generate(system: String, prompt: String, schema: [String: Any]?) async throws -> String {
+        var lastError: Error = Failure.badResponse("No model available")
+        for model in [Config.textModel, "gemini-3.8-flash-lite", "gemini-2.5-flash"] {
+            do { return try await generate(model: model, system: system, prompt: prompt, schema: schema) }
+            catch { lastError = error }
+        }
+        throw lastError
+    }
+
+    private static func generate(model: String, system: String, prompt: String, schema: [String: Any]?) async throws -> String {
         guard let key = Config.geminiAPIKey else { throw Failure.noKey }
-        var config: [String: Any] = ["thinkingConfig": ["thinkingLevel": "HIGH"]]
+        var config: [String: Any] = model.hasPrefix("gemini-3")
+            ? ["thinkingConfig": ["thinkingLevel": "HIGH"]]
+            : ["thinkingConfig": ["thinkingBudget": 8192]]
         if let schema {
             config["responseMimeType"] = "application/json"
             config["responseJsonSchema"] = schema
@@ -76,14 +88,24 @@ enum GeminiText {
             "contents": [["role": "user", "parts": [["text": prompt]]]],
             "generationConfig": config,
         ]
-        var req = URLRequest(url: URL(string: "https://generativelanguage.googleapis.com/v1beta/models/\(Config.textModel):generateContent")!)
+        var req = URLRequest(url: URL(string: "https://generativelanguage.googleapis.com/v1beta/models/\(model):generateContent")!)
         req.httpMethod = "POST"
         req.setValue("application/json", forHTTPHeaderField: "Content-Type")
         req.setValue(key, forHTTPHeaderField: "x-goog-api-key")
         req.httpBody = try JSONSerialization.data(withJSONObject: body)
         req.timeoutInterval = 120
 
-        let (data, response) = try await URLSession.shared.data(for: req)
+        // Flash is often under heavy load: retry transient errors with backoff.
+        var data = Data(), response: URLResponse?
+        for attempt in 0..<3 {
+            (data, response) = try await URLSession.shared.data(for: req)
+            let code = (response as? HTTPURLResponse)?.statusCode ?? 0
+            if [429, 500, 503].contains(code) && attempt < 2 {
+                try await Task.sleep(for: .seconds(1.5 * Double(attempt + 1)))
+                continue
+            }
+            break
+        }
         guard let json = try JSONSerialization.jsonObject(with: data) as? [String: Any] else {
             throw Failure.badResponse("Unreadable response")
         }

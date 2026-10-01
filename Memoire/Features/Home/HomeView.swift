@@ -323,8 +323,7 @@ struct CallPlanSheet: View {
                         }
                     }
                     .card()
-                } else if let error {
-                    Text(error).font(.ui(14)).foregroundStyle(Theme.mute).card()
+                    if let error { Text(error).font(.ui(12)).foregroundStyle(Theme.mute) }
                 } else {
                     HStack(spacing: 12) { ProgressView(); Text("Louise is reading the dossier…").font(.ui(15)).foregroundStyle(Theme.mute) }
                         .frame(maxWidth: .infinity).card()
@@ -366,6 +365,7 @@ struct CallPlanSheet: View {
         """
         do { plan = try await GeminiText.callPlan(dossier: dossier) }
         catch {
+            self.error = "Sample plan shown — Gemini unavailable (\(error.localizedDescription))."
             plan = """
             1) “Good afternoon \(app.profile.firstName), it's Louise, on behalf of Claire. How was your week?”
             2) Last time you told me about the blue 2CV and the farmer's tractor — did you ever make it to Collioure?
@@ -373,7 +373,6 @@ struct CallPlanSheet: View {
             4) Follow-ups: the teacher's name; the walk from Rue d'Arzew to school with Simone.
             5) \(q.map { "\($0.author) asks: “\($0.text)”" } ?? "No family question this week.")
             """
-            self.error = nil
         }
     }
 }

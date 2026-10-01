@@ -20,6 +20,7 @@ final class LiveAudioIO: @unchecked Sendable {
     private var _recordedFrames: Int64 = 0
 
     var onChunk: ((Data, Float) -> Void)?
+    var muted = false
     var onOutputLevel: ((Float) -> Void)?
 
     var isModelSpeaking: Bool { lock.withLock { pendingBuffers > 0 } }
@@ -31,7 +32,9 @@ final class LiveAudioIO: @unchecked Sendable {
         try session.setActive(true)
 
         let input = engine.inputNode
+        #if !targetEnvironment(simulator)
         try? input.setVoiceProcessingEnabled(true)   // echo cancellation: the biographer must not hear itself
+        #endif
         let inFormat = input.outputFormat(forBus: 0)
         converter = AVAudioConverter(from: inFormat, to: sendFormat)
         recordFile = try AVAudioFile(forWriting: url, settings: sendFormat.settings,
@@ -45,9 +48,55 @@ final class LiveAudioIO: @unchecked Sendable {
         engine.prepare()
         try engine.start()
         player.play()
+        if let feed = UserDefaults.standard.string(forKey: "feedAudio") { startFeed(path: feed) }
+    }
+
+    /// Test hook (`-feedAudio /path/file.wav`): streams a recording as if it were the microphone,
+    /// so the full call → chapter pipeline can be exercised without a human on the simulator.
+    private var feedTimer: DispatchSourceTimer?
+    private func startFeed(path: String) {
+        guard let file = try? AVAudioFile(forReading: URL(fileURLWithPath: path)),
+              let conv = AVAudioConverter(from: file.processingFormat, to: sendFormat) else { return }
+        let total = AVAudioFrameCount(file.length)
+        guard let src = AVAudioPCMBuffer(pcmFormat: file.processingFormat, frameCapacity: total),
+              (try? file.read(into: src)) != nil else { return }
+        let outCap = AVAudioFrameCount(Double(total) * sendFormat.sampleRate / file.processingFormat.sampleRate) + 1024
+        guard let all = AVAudioPCMBuffer(pcmFormat: sendFormat, frameCapacity: outCap) else { return }
+        var fed = false
+        conv.convert(to: all, error: nil) { _, status in
+            if fed { status.pointee = .endOfStream; return nil }
+            fed = true; status.pointee = .haveData; return src
+        }
+        var offset = 0
+        let chunk = 1600 // 100 ms
+        let timer = DispatchSource.makeTimerSource(queue: .global())
+        timer.schedule(deadline: .now() + 4, repeating: .milliseconds(100))
+        timer.setEventHandler { [weak self] in
+            guard let self, let samples = all.int16ChannelData?[0] else { return }
+            let n = min(chunk, Int(all.frameLength) - offset)
+            if n <= 0 {
+                // keep streaming silence so the server VAD can close the turn
+                var silence = [Int16](repeating: 0, count: chunk)
+                self.onChunk?(Data(bytes: &silence, count: chunk * 2), 0)
+                return
+            }
+            let data = Data(bytes: samples + offset, count: n * 2)
+            if let rec = self.recordFile, let buf = AVAudioPCMBuffer(pcmFormat: self.sendFormat, frameCapacity: AVAudioFrameCount(n)) {
+                buf.frameLength = AVAudioFrameCount(n)
+                memcpy(buf.int16ChannelData![0], samples + offset, n * 2)
+                try? rec.write(from: buf)
+                self.lock.withLock { self._recordedFrames += Int64(n) }
+            }
+            offset += n
+            self.onChunk?(data, 0.5)
+        }
+        timer.resume()
+        feedTimer = timer
     }
 
     func stop() {
+        feedTimer?.cancel()
+        feedTimer = nil
         engine.inputNode.removeTap(onBus: 0)
         player.stop()
         engine.stop()
@@ -56,7 +105,7 @@ final class LiveAudioIO: @unchecked Sendable {
     }
 
     private func process(_ buffer: AVAudioPCMBuffer) {
-        guard let converter else { return }
+        guard let converter, feedTimer == nil else { return }
         let ratio = sendFormat.sampleRate / buffer.format.sampleRate
         let capacity = AVAudioFrameCount(Double(buffer.frameLength) * ratio) + 64
         guard let out = AVAudioPCMBuffer(pcmFormat: sendFormat, frameCapacity: capacity) else { return }
@@ -73,7 +122,8 @@ final class LiveAudioIO: @unchecked Sendable {
         var sum: Float = 0
         for i in 0..<count { let v = Float(samples[i]) / 32768; sum += v * v }
         let rms = min(1, sqrt(sum / Float(count)) * 6)
-        onChunk?(Data(bytes: samples, count: count * 2), rms)
+        if muted { memset(samples, 0, count * 2) }
+        onChunk?(Data(bytes: samples, count: count * 2), muted ? 0 : rms)
 
         // Keep only the storyteller's side in the archive recording.
         if !isModelSpeaking, let recordFile {
@@ -143,6 +193,8 @@ final class GeminiLiveSession {
     private var openTurn = false
 
     var isBiographerSpeaking: Bool { outputLevel > 0.02 }
+
+    func setMuted(_ muted: Bool) { audio.muted = muted }
 
     func start(systemPrompt: String, kickoff: String, voice: String = "Sulafat") async {
         guard let key = Config.geminiAPIKey else {
@@ -300,7 +352,10 @@ final class GeminiLiveSession {
 
     private func append(_ text: String, _ speaker: Line.Speaker) {
         if let last = lines.last, last.speaker == speaker {
-            lines[lines.count - 1].text += text
+            // Fragments sometimes arrive without the space after punctuation ("Jeanne.It's").
+            var piece = text
+            if let end = last.text.last, ".,!?;:".contains(end), let first = piece.first, first.isLetter { piece = " " + piece }
+            lines[lines.count - 1].text += piece
         } else {
             let trimmed = text.trimmingCharacters(in: .whitespaces)
             guard !trimmed.isEmpty else { return }

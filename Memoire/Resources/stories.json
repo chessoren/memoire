@@ -24,43 +24,43 @@
       "segments": [
         {
           "text": "Oh, the kitchen. It was tiny, and it was always too hot.",
-          "start": 0.0,
-          "end": 5.051
+          "start": 0.31,
+          "end": 3.65
         },
         {
           "text": "There was a blue tiled wall behind the stove, and my mother had hung a calendar from the bakery, always on the wrong month.",
-          "start": 5.601,
-          "end": 14.052
+          "start": 3.97,
+          "end": 15.05
         },
         {
           "text": "At Easter she made the mouna, a big round brioche with orange blossom water.",
-          "start": 14.602,
-          "end": 19.942
+          "start": 15.53,
+          "end": 22.69
         },
         {
           "text": "The whole street could smell it. Simone, my best friend, used to come and sit on the step just to wait for the first slice.",
-          "start": 20.492,
-          "end": 29.475
+          "start": 23.51,
+          "end": 31.43
         },
         {
           "text": "I was not allowed to touch the dough. So of course I touched the dough.",
-          "start": 30.025,
-          "end": 35.03
+          "start": 32.41,
+          "end": 36.41
         },
         {
           "text": "My mother pretended not to see. She always pretended not to see.",
-          "start": 35.58,
-          "end": 40.874
+          "start": 37.17,
+          "end": 42.03
         },
         {
           "text": "Even now, when I smell orange blossom, I am seven years old again, on that little stool by the window.",
-          "start": 41.424,
-          "end": 49.354
+          "start": 43.45,
+          "end": 49.95
         }
       ],
-      "duration": 49.9,
+      "duration": 50.44,
       "audio": "kitchen",
-      "voice": "say"
+      "voice": "gemini"
     },
     {
       "id": "dance",
@@ -80,43 +80,43 @@
       "segments": [
         {
           "text": "It was a Saturday in June, at the dance hall in Saint-Cyprien. Simone dragged me there, I did not want to go.",
-          "start": 0.0,
-          "end": 8.451
+          "start": 0.17,
+          "end": 8.37
         },
         {
           "text": "Marcel played the accordion. He was terrible, but nobody cared, everybody danced anyway.",
-          "start": 9.001,
-          "end": 16.619
+          "start": 9.35,
+          "end": 17.99
         },
         {
           "text": "And there was this tall boy by the door who did not dance at all. He just watched.",
-          "start": 17.169,
-          "end": 22.96
+          "start": 18.59,
+          "end": 24.85
         },
         {
           "text": "After an hour he finally came to me and asked, very seriously, if I could teach him the waltz.",
-          "start": 23.51,
-          "end": 30.839
+          "start": 26.43,
+          "end": 33.71
         },
         {
           "text": "He stepped on my feet maybe twenty times. I counted.",
-          "start": 31.389,
-          "end": 36.325
+          "start": 34.91,
+          "end": 38.77
         },
         {
           "text": "At the end of the night he said, next Saturday I will be better. And he was not better. But he came back every Saturday.",
-          "start": 36.875,
-          "end": 46.482
+          "start": 40.47,
+          "end": 50.51
         },
         {
           "text": "That was Henri. We were married three years later, and he never learned to waltz.",
-          "start": 47.032,
-          "end": 53.043
+          "start": 51.89,
+          "end": 57.81
         }
       ],
-      "duration": 53.59,
+      "duration": 58.4,
       "audio": "dance",
-      "voice": "say"
+      "voice": "gemini"
     },
     {
       "id": "classroom",
@@ -134,33 +134,33 @@
       "segments": [
         {
           "text": "My first school was in a village in the Ariège mountains. One room, thirty-one children, from six years old to fourteen.",
-          "start": 0.0,
-          "end": 9.572
+          "start": 0.21,
+          "end": 10.59
         },
         {
           "text": "In winter I had to light the stove myself at seven in the morning, otherwise the ink froze in the inkwells.",
-          "start": 10.122,
-          "end": 17.37
+          "start": 11.67,
+          "end": 19.03
         },
         {
           "text": "On the first day, a little boy called Pierrot came in with a hedgehog in his coat pocket.",
-          "start": 17.92,
-          "end": 24.382
+          "start": 20.33,
+          "end": 25.81
         },
         {
           "text": "He said it was his cousin. The whole class laughed, and I laughed too, and that was the end of being a strict teacher.",
-          "start": 24.932,
-          "end": 33.186
+          "start": 26.49,
+          "end": 34.47
         },
         {
           "text": "I stayed in that village four years. I still receive a postcard from Pierrot every Christmas. He is a grandfather now.",
-          "start": 33.736,
-          "end": 42.996
+          "start": 35.43,
+          "end": 43.25
         }
       ],
-      "duration": 43.55,
+      "duration": 43.48,
       "audio": "classroom",
-      "voice": "say"
+      "voice": "gemini"
     },
     {
       "id": "deux-cv",
@@ -180,38 +180,38 @@
       "segments": [
         {
           "text": "Ah, Claire found that photo! That was the summer of seventy-six, the year it was so hot.",
-          "start": 0.0,
-          "end": 7.225
+          "start": 0.17,
+          "end": 7.51
         },
         {
           "text": "Henri decided we would drive to the sea at Collioure, with Claire who was two years old, in our little blue 2CV.",
-          "start": 7.775,
-          "end": 15.972
+          "start": 9.21,
+          "end": 16.65
         },
         {
           "text": "The car broke down in the middle of the vineyards. Nothing, nobody, just the cicadas.",
-          "start": 16.522,
-          "end": 23.215
+          "start": 18.15,
+          "end": 23.07
         },
         {
           "text": "And then a farmer arrived on his tractor, as if it was the most normal thing in the world, and he pulled us all the way to the village.",
-          "start": 23.765,
-          "end": 32.481
+          "start": 23.57,
+          "end": 33.71
         },
         {
           "text": "Claire sat on Henri's knees and she shouted at every car that passed. She thought it was the best day of her life.",
-          "start": 33.032,
-          "end": 41.047
+          "start": 34.91,
+          "end": 42.25
         },
         {
           "text": "We never saw the sea that day. But we ate peaches with the farmer's family, and honestly, it was better than the sea.",
-          "start": 41.597,
-          "end": 49.713
+          "start": 43.23,
+          "end": 52.25
         }
       ],
-      "duration": 50.26,
+      "duration": 52.6,
       "audio": "deux-cv",
-      "voice": "say"
+      "voice": "gemini"
     },
     {
       "id": "bicycle",
@@ -231,38 +231,38 @@
       "segments": [
         {
           "text": "Lucas asked that? Oh, he will like this one.",
-          "start": 0.0,
-          "end": 4.068
+          "start": 0.23,
+          "end": 4.03
         },
         {
           "text": "The summer after we met, I went to Barcelona for a month, to help my aunt in her shop.",
-          "start": 4.618,
-          "end": 10.988
+          "start": 6.83,
+          "end": 12.67
         },
         {
           "text": "Henri had no money for the train. So he took his bicycle. Toulouse to Barcelona, over the Pyrenees, on a bicycle with three gears.",
-          "start": 11.538,
-          "end": 22.082
+          "start": 14.41,
+          "end": 26.39
         },
         {
           "text": "It took him five days. He arrived at my aunt's shop completely burnt by the sun, with one shoe.",
-          "start": 22.632,
-          "end": 30.146
+          "start": 27.21,
+          "end": 35.05
         },
         {
           "text": "My aunt looked at him and said to me, in Spanish, this one, you keep him.",
-          "start": 30.696,
-          "end": 36.302
+          "start": 36.43,
+          "end": 41.53
         },
         {
           "text": "So tell Lucas: his grandfather was not crazy. He was in love. It is almost the same thing.",
-          "start": 36.852,
-          "end": 45.21
+          "start": 42.49,
+          "end": 50.61
         }
       ],
-      "duration": 45.76,
+      "duration": 50.96,
       "audio": "bicycle",
-      "voice": "say"
+      "voice": "gemini"
     },
     {
       "id": "claire-born",
@@ -281,33 +281,33 @@
       "segments": [
         {
           "text": "Claire was born in March, during the biggest storm of the year. All the lights in the street went out.",
-          "start": 0.0,
-          "end": 7.149
+          "start": 0.23,
+          "end": 7.71
         },
         {
           "text": "Henri drove me to the hospital with one hand on the wheel and the other holding an umbrella out of the window, I still do not know why.",
-          "start": 7.699,
-          "end": 16.531
+          "start": 8.63,
+          "end": 20.01
         },
         {
           "text": "She arrived at four in the morning, very small and very angry.",
-          "start": 17.081,
-          "end": 21.716
+          "start": 20.61,
+          "end": 22.59
         },
         {
           "text": "The nurse said, this one will have opinions. And she was right, Claire has had opinions ever since.",
-          "start": 22.266,
-          "end": 29.665
+          "start": 23.37,
+          "end": 32.29
         },
         {
           "text": "When they put her in my arms, the electricity came back, all at once. Henri said it was a sign. He said that about everything.",
-          "start": 30.215,
-          "end": 40.596
+          "start": 32.61,
+          "end": 42.41
         }
       ],
-      "duration": 41.15,
+      "duration": 43.12,
       "audio": "claire-born",
-      "voice": "say"
+      "voice": "gemini"
     }
   ]
 }

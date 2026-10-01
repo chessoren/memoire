@@ -55,7 +55,7 @@ struct LiveCallView: View {
                         .scaleEffect(1 + CGFloat(session.outputLevel) * 0.25)
                     Circle().fill(.white.opacity(0.22)).frame(width: 122, height: 122)
                         .scaleEffect(1 + CGFloat(session.outputLevel) * 0.12)
-                    Avatar(person: AvatarSpec(name: "Louise AI", colors: [Color(hex: 0x9FD0FF), Theme.blueDeep]), size: 98, ring: true)
+                    Avatar(person: AvatarSpec(name: "Louise", colors: [Color(hex: 0x9FD0FF), Theme.blueDeep]), size: 98, ring: true)
                 }
                 .animation(.easeOut(duration: 0.12), value: session.outputLevel)
                 .padding(.top, 18)
@@ -129,7 +129,7 @@ struct LiveCallView: View {
     private var controls: some View {
         VStack(spacing: 20) {
             HStack(spacing: 12) {
-                pill(muted ? "mic.slash.fill" : "mic.fill", active: muted) { muted.toggle() }
+                pill(muted ? "mic.slash.fill" : "mic.fill", active: muted) { muted.toggle(); session.setMuted(muted) }
                 pill("captions.bubble.fill", active: true) { }
                 pill("speaker.wave.2.fill", active: false) { }
             }
@@ -206,7 +206,16 @@ struct LiveCallView: View {
             result = story
             withAnimation(.spring) { phase = .done }
         } catch {
-            pipelineError = error.localizedDescription
+            // Never lose a recording: keep the verbatim call, the chapter can be written later.
+            let segments = turns.map { Segment(text: $0.text.trimmingCharacters(in: .whitespaces), start: $0.start, end: max($0.end, $0.start + 1)) }
+            let story = Story(id: "live-\(Int(Date().timeIntervalSince1970))", title: "\(app.profile.day)'s call", theme: "Family", year: 0,
+                              place: app.profile.birthPlace, call: (app.stories.map(\.call).max() ?? 0) + 1,
+                              date: ISO8601DateFormatter().string(from: .now).prefix(10).description,
+                              prompt: session.lines.first { $0.speaker == .biographer }?.text ?? "",
+                              askedBy: nil, people: [], highlight: false, segments: segments,
+                              duration: (segments.last?.end ?? 0) + 0.5, audio: recording.lastPathComponent, voice: "live")
+            app.addRecordedStory(story)
+            pipelineError = "Recording saved. The chapter will be written when Gemini is available (\(error.localizedDescription))."
             withAnimation(.spring) { phase = .done }
         }
     }
