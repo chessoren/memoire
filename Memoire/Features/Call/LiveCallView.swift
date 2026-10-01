@@ -235,7 +235,7 @@ struct LiveCallView: View {
             VStack(alignment: .leading, spacing: 14) {
                 step(0, "Call recorded, \(app.storytellerFirstName)'s voice kept")
                 step(1, "Transcribed with speaker separation")
-                step(2, "Chapter written in her own words · Gemini 3.8 Flash")
+                step(2, "Chapter written in her own words · Gemini")
                 step(3, "People, places and dates added to the dossier")
                 step(4, "Family notified")
             }
@@ -247,6 +247,7 @@ struct LiveCallView: View {
                     Text(r.title).font(.display(18, .semibold)).foregroundStyle(Theme.ink)
                     Text(r.chapter ?? "").font(.story(15)).foregroundStyle(Theme.inkSoft).lineLimit(4)
                 }
+                .frame(maxWidth: .infinity, alignment: .leading)
                 .card()
                 .padding(.horizontal, Theme.gutter)
                 .transition(.move(edge: .bottom).combined(with: .opacity))

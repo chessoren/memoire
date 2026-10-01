@@ -354,7 +354,8 @@ final class GeminiLiveSession {
         if let last = lines.last, last.speaker == speaker {
             // Fragments sometimes arrive without the space after punctuation ("Jeanne.It's").
             var piece = text
-            if let end = last.text.last, ".,!?;:".contains(end), let first = piece.first, first.isLetter { piece = " " + piece }
+            // Live transcription fragments are word-sized and sometimes lose their leading space.
+            if let end = last.text.last, end.isLetter || ".,!?;:".contains(end), let first = piece.first, first.isLetter { piece = " " + piece }
             lines[lines.count - 1].text += piece
         } else {
             let trimmed = text.trimmingCharacters(in: .whitespaces)
