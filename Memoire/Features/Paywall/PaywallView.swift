@@ -63,6 +63,7 @@ struct PaywallView: View {
                             }
                         }
                     }
+                    .frame(maxWidth: .infinity, alignment: .leading)
                     .card(padding: 20)
 
                     HStack(spacing: 12) {
@@ -75,7 +76,7 @@ struct PaywallView: View {
                     }
                     .card()
 
-                    Text("Gift plans are one-time purchases and never renew by surprise. Monthly renews until cancelled in Settings. Payment is handled by Apple through RevenueCat.")
+                    Text("The Gift renews yearly only after a reminder two months before; cancel anytime in Settings. Lifetime archive is a one-time purchase. Payments handled by Apple through RevenueCat.")
                         .font(.ui(11)).foregroundStyle(Theme.mute)
                         .padding(.bottom, 120)
                 }
@@ -103,7 +104,8 @@ struct PaywallView: View {
                 }
             }
             Text(selected?.price ?? "€119.00")
-                .font(.display(38, .bold))
+                .font(.display(34, .bold))
+                .lineLimit(1).minimumScaleFactor(0.6)
                 .contentTransition(.numericText())
             HStack(spacing: 10) {
                 stat("52", "Calls")
@@ -137,19 +139,20 @@ struct PaywallView: View {
             HStack(alignment: .top, spacing: 14) {
                 Image(systemName: on ? "largecircle.fill.circle" : "circle")
                     .font(.system(size: 22)).foregroundStyle(on ? Theme.blue : Theme.hairline)
-                VStack(alignment: .leading, spacing: 4) {
-                    HStack {
+                VStack(alignment: .leading, spacing: 6) {
+                    HStack(alignment: .firstTextBaseline) {
                         Text(plan.title).font(.ui(16, .semibold)).foregroundStyle(Theme.ink)
-                        if let badge = plan.badge {
-                            Text(badge).font(.ui(11, .bold)).foregroundStyle(Theme.orange)
-                                .padding(.horizontal, 8).padding(.vertical, 3)
-                                .background(Capsule().fill(Theme.orangeWash))
-                        }
+                        Spacer(minLength: 8)
+                        Text(plan.price).font(.ui(15, .bold)).foregroundStyle(Theme.ink)
+                    }
+                    if let badge = plan.badge {
+                        Text(badge).font(.ui(11, .bold)).foregroundStyle(Theme.orange)
+                            .padding(.horizontal, 8).padding(.vertical, 3)
+                            .background(Capsule().fill(Theme.orangeWash))
                     }
                     Text(plan.subtitle).font(.ui(13)).foregroundStyle(Theme.mute).multilineTextAlignment(.leading)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
-                Spacer(minLength: 4)
-                Text(plan.price).font(.ui(15, .bold)).foregroundStyle(Theme.ink)
             }
             .card(padding: 16)
             .overlay(RoundedRectangle(cornerRadius: Theme.radiusL).stroke(on ? Theme.blue : .clear, lineWidth: 1.5))

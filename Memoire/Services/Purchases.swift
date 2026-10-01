@@ -59,8 +59,8 @@ final class PurchaseManager {
     }
 
     private func order(_ p: Plan) -> Int {
-        if p.id.contains("gift") || p.id.contains("annual") { return 0 }
-        if p.id.contains("month") { return 1 }
+        if p.title.hasPrefix("The Gift") { return 0 }
+        if p.title == "Monthly" { return 1 }
         return 2
     }
 
@@ -127,8 +127,8 @@ final class PurchaseManager {
         let id = p.storeProduct.productIdentifier
         let price = p.storeProduct.localizedPriceString
         switch true {
-        case id.contains("gift") || p.packageType == .annual:
-            return Plan(id: id, title: "The Gift · 12 months", subtitle: "52 calls, chapters, private podcast, voice archive. Never renews by surprise.", price: price, badge: "Most chosen", package: p)
+        case id.contains("gift") || id.contains("year") || p.packageType == .annual:
+            return Plan(id: id, title: "The Gift · 12 months", subtitle: "52 calls, chapters, private podcast, voice archive. We remind you 2 months before renewal.", price: price + " / year", badge: "Most chosen", package: p)
         case id.contains("month") || p.packageType == .monthly:
             return Plan(id: id, title: "Monthly", subtitle: "Same as the Gift, cancel anytime.", price: price + " / month", badge: nil, package: p)
         default:
@@ -137,7 +137,7 @@ final class PurchaseManager {
     }
 
     static let demoPlans: [Plan] = [
-        Plan(id: "memoire_gift_12m", title: "The Gift · 12 months", subtitle: "52 calls, chapters, private podcast, voice archive. Never renews by surprise.", price: "€119.00", badge: "Most chosen", package: nil),
+        Plan(id: "memoire_gift_12m", title: "The Gift · 12 months", subtitle: "52 calls, chapters, private podcast, voice archive. We remind you 2 months before renewal.", price: "€119.00 / year", badge: "Most chosen", package: nil),
         Plan(id: "memoire_monthly", title: "Monthly", subtitle: "Same as the Gift, cancel anytime.", price: "€12.99 / month", badge: nil, package: nil),
         Plan(id: "memoire_lifetime_archive", title: "Lifetime archive", subtitle: "Every recording kept and searchable, forever.", price: "€79.00", badge: "One time", package: nil),
     ]

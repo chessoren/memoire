@@ -2,7 +2,7 @@ import Foundation
 
 enum Config {
     /// RevenueCat public SDK key (Test Store key for the hackathon build — safe to ship in the client).
-    static let revenueCatAPIKey = "test_REPLACE_ME"
+    static let revenueCatAPIKey = "test_ibcbhzDivraEEEiNvwUCxPhamgo"
     static let entitlementID = "family"
 
     /// Gemini models: Live for the voice call, Flash (high thinking) for the call brief and the chapter.

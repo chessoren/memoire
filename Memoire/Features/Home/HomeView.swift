@@ -16,7 +16,7 @@ struct HomeView: View {
                     actionTile("Try a call", "Talk with \(app.profile.biographer) now", "phone.fill", Theme.green, Theme.greenWash) {
                         app.showLiveCall = true
                     }
-                    actionTile("Ask her", "Her real voice answers", "waveform", Theme.orange, Theme.orangeWash) {
+                    actionTile("Ask \(app.storytellerFirstName)", "Her real voice answers", "waveform", Theme.orange, Theme.orangeWash) {
                         app.selectedTab = .ask
                     }
                 }
@@ -59,7 +59,7 @@ struct HomeView: View {
         VStack(spacing: 16) {
             VStack(spacing: 6) {
                 Text("Next call").font(.ui(14, .medium)).opacity(0.85)
-                Text(app.nextCallDate.formatted(.dateTime.weekday(.wide).hour().minute()))
+                Text(app.nextCallDate.formatted(.dateTime.weekday(.wide).hour().minute().locale(Locale(identifier: "en_US"))))
                     .font(.display(30, .bold))
                 Text("\(app.callName) · with \(app.profile.biographer) · call \(app.stories.map(\.call).max().map { $0 + 1 } ?? 1) of 52")
                     .font(.ui(14)).opacity(0.85)
@@ -69,11 +69,11 @@ struct HomeView: View {
 
             HStack(spacing: 10) {
                 Button { askingQuestion = true } label: {
-                    Label("Add a question", systemImage: "plus").frame(maxWidth: .infinity)
+                    Label("Add question", systemImage: "plus").lineLimit(1).frame(maxWidth: .infinity)
                 }
                 .buttonStyle(PillButtonStyle(fill: .white.opacity(0.95)))
                 Button { showPlan = true } label: {
-                    Label("Louise's plan", systemImage: "sparkles").frame(maxWidth: .infinity)
+                    Label("Call plan", systemImage: "sparkles").lineLimit(1).frame(maxWidth: .infinity)
                 }
                 .buttonStyle(PillButtonStyle(fill: .white.opacity(0.2), text: .white))
             }
@@ -91,7 +91,7 @@ struct HomeView: View {
             VStack(alignment: .leading, spacing: 14) {
                 IconBadge(systemName: icon, tint: tint, wash: wash, size: 40)
                 VStack(alignment: .leading, spacing: 3) {
-                    Text(title).font(.display(16, .semibold)).foregroundStyle(Theme.ink)
+                    Text(title).font(.display(16, .semibold)).foregroundStyle(Theme.ink).lineLimit(1).minimumScaleFactor(0.8)
                     Text(sub).font(.ui(13)).foregroundStyle(Theme.mute).lineLimit(1).minimumScaleFactor(0.85)
                 }
             }

@@ -38,7 +38,7 @@ struct IntroPager: View {
 
     private let pages: [(String, String)] = [
         ("Hear Jeanne, 81", "Tap play. This is what Mémoire keeps: a real voice, telling a real memory."),
-        ("We call. They just pick up.", "Every Sunday, Louise, a warm AI biographer, calls your parent or grandparent. Nothing to install, no app, no password."),
+        ("We call. They pick up.", "Every Sunday, Louise, a warm AI biographer, calls your parent or grandparent. Nothing to install, no app, no password."),
         ("The whole family joins in", "Everyone gets the story that night, reacts, and slips a question into next Sunday's call."),
     ]
 
@@ -57,6 +57,8 @@ struct IntroPager: View {
                     .font(.display(25, .semibold))
                     .foregroundStyle(Theme.ink)
                     .multilineTextAlignment(.center)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.7)
                     .contentTransition(.opacity)
                 Text(pages[page].1)
                     .font(.ui(16))

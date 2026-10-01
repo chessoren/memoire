@@ -45,6 +45,17 @@ final class AppState {
         let archive = try! JSONDecoder().decode(ArchiveFile.self, from: Data(contentsOf: url))
         storyteller = archive.storyteller
         bundledStories = archive.stories
+
+        // Launch arguments for demo recording: -tab stories|ask|family|profile, -story <id>
+        switch defaults.string(forKey: "tab") {
+        case "stories": selectedTab = .stories
+        case "ask": selectedTab = .ask
+        case "family": selectedTab = .family
+        case "profile": selectedTab = .profile
+        default: break
+        }
+        showPaywall = defaults.bool(forKey: "paywall")
+        if let id = defaults.string(forKey: "story") { presentedStory = stories.first { $0.id == id } }
     }
 
     // MARK: Derived
