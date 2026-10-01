@@ -1,0 +1,8 @@
+.env
+Memoire/Config/Secrets.plist
+xcuserdata/
+DerivedData/
+.build/
+*.xcuserstate
+.DS_Store
+scripts/.cache/

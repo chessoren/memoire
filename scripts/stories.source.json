@@ -1,0 +1,133 @@
+{
+  "storyteller": {
+    "name": "Jeanne Morel",
+    "callName": "Grandma Jeanne",
+    "born": "1945, Oran",
+    "lives": "Toulouse, France",
+    "career": "Primary school teacher for 39 years"
+  },
+  "stories": [
+    {
+      "id": "kitchen",
+      "title": "The kitchen on Rue d'Arzew",
+      "theme": "Childhood",
+      "year": 1952,
+      "place": "Oran",
+      "call": 2,
+      "date": "2026-09-06",
+      "prompt": "Describe the kitchen of the house where you grew up.",
+      "people": ["Mother", "Simone"],
+      "highlight": true,
+      "sentences": [
+        "Oh, the kitchen. It was tiny, and it was always too hot.",
+        "There was a blue tiled wall behind the stove, and my mother had hung a calendar from the bakery, always on the wrong month.",
+        "At Easter she made the mouna, a big round brioche with orange blossom water.",
+        "The whole street could smell it. Simone, my best friend, used to come and sit on the step just to wait for the first slice.",
+        "I was not allowed to touch the dough. So of course I touched the dough.",
+        "My mother pretended not to see. She always pretended not to see.",
+        "Even now, when I smell orange blossom, I am seven years old again, on that little stool by the window."
+      ]
+    },
+    {
+      "id": "dance",
+      "title": "The dance where I met Henri",
+      "theme": "Love",
+      "year": 1964,
+      "place": "Toulouse",
+      "call": 4,
+      "date": "2026-09-20",
+      "prompt": "Who played the music at the Saturday dance, and who did you go with?",
+      "people": ["Henri", "Marcel", "Simone"],
+      "highlight": true,
+      "sentences": [
+        "It was a Saturday in June, at the dance hall in Saint-Cyprien. Simone dragged me there, I did not want to go.",
+        "Marcel played the accordion. He was terrible, but nobody cared, everybody danced anyway.",
+        "And there was this tall boy by the door who did not dance at all. He just watched.",
+        "After an hour he finally came to me and asked, very seriously, if I could teach him the waltz.",
+        "He stepped on my feet maybe twenty times. I counted.",
+        "At the end of the night he said, next Saturday I will be better. And he was not better. But he came back every Saturday.",
+        "That was Henri. We were married three years later, and he never learned to waltz."
+      ]
+    },
+    {
+      "id": "classroom",
+      "title": "My first classroom",
+      "theme": "Work",
+      "year": 1966,
+      "place": "Ariège",
+      "call": 3,
+      "date": "2026-09-13",
+      "prompt": "Tell me about your very first day as a teacher.",
+      "people": ["Pierrot"],
+      "highlight": false,
+      "sentences": [
+        "My first school was in a village in the Ariège mountains. One room, thirty-one children, from six years old to fourteen.",
+        "In winter I had to light the stove myself at seven in the morning, otherwise the ink froze in the inkwells.",
+        "On the first day, a little boy called Pierrot came in with a hedgehog in his coat pocket.",
+        "He said it was his cousin. The whole class laughed, and I laughed too, and that was the end of being a strict teacher.",
+        "I stayed in that village four years. I still receive a postcard from Pierrot every Christmas. He is a grandfather now."
+      ]
+    },
+    {
+      "id": "deux-cv",
+      "title": "The blue 2CV and the tractor",
+      "theme": "Adventures",
+      "year": 1976,
+      "place": "Collioure",
+      "call": 5,
+      "date": "2026-09-27",
+      "prompt": "Claire added a photo of you in front of a blue 2CV. Tell me about that day.",
+      "askedBy": "Claire",
+      "people": ["Henri", "Claire"],
+      "highlight": true,
+      "sentences": [
+        "Ah, Claire found that photo! That was the summer of seventy-six, the year it was so hot.",
+        "Henri decided we would drive to the sea at Collioure, with Claire who was two years old, in our little blue 2CV.",
+        "The car broke down in the middle of the vineyards. Nothing, nobody, just the cicadas.",
+        "And then a farmer arrived on his tractor, as if it was the most normal thing in the world, and he pulled us all the way to the village.",
+        "Claire sat on Henri's knees and she shouted at every car that passed. She thought it was the best day of her life.",
+        "We never saw the sea that day. But we ate peaches with the farmer's family, and honestly, it was better than the sea."
+      ]
+    },
+    {
+      "id": "bicycle",
+      "title": "Henri's bicycle to Barcelona",
+      "theme": "Love",
+      "year": 1965,
+      "place": "Toulouse to Barcelona",
+      "call": 5,
+      "date": "2026-09-27",
+      "prompt": "Lucas wants to know: did Grandpa ever do something crazy when he was young?",
+      "askedBy": "Lucas",
+      "people": ["Henri", "Lucas"],
+      "highlight": false,
+      "sentences": [
+        "Lucas asked that? Oh, he will like this one.",
+        "The summer after we met, I went to Barcelona for a month, to help my aunt in her shop.",
+        "Henri had no money for the train. So he took his bicycle. Toulouse to Barcelona, over the Pyrenees, on a bicycle with three gears.",
+        "It took him five days. He arrived at my aunt's shop completely burnt by the sun, with one shoe.",
+        "My aunt looked at him and said to me, in Spanish, this one, you keep him.",
+        "So tell Lucas: his grandfather was not crazy. He was in love. It is almost the same thing."
+      ]
+    },
+    {
+      "id": "claire-born",
+      "title": "The night Claire was born",
+      "theme": "Family",
+      "year": 1974,
+      "place": "Toulouse",
+      "call": 1,
+      "date": "2026-08-30",
+      "prompt": "What do you remember about the day your first child was born?",
+      "people": ["Claire", "Henri"],
+      "highlight": false,
+      "sentences": [
+        "Claire was born in March, during the biggest storm of the year. All the lights in the street went out.",
+        "Henri drove me to the hospital with one hand on the wheel and the other holding an umbrella out of the window, I still do not know why.",
+        "She arrived at four in the morning, very small and very angry.",
+        "The nurse said, this one will have opinions. And she was right, Claire has had opinions ever since.",
+        "When they put her in my arms, the electricity came back, all at once. Henri said it was a sign. He said that about everything."
+      ]
+    }
+  ]
+}

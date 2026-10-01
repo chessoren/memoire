@@ -1,0 +1,313 @@
+{
+  "storyteller": {
+    "name": "Jeanne Morel",
+    "callName": "Grandma Jeanne",
+    "born": "1945, Oran",
+    "lives": "Toulouse, France",
+    "career": "Primary school teacher for 39 years"
+  },
+  "stories": [
+    {
+      "id": "kitchen",
+      "title": "The kitchen on Rue d'Arzew",
+      "theme": "Childhood",
+      "year": 1952,
+      "place": "Oran",
+      "call": 2,
+      "date": "2026-09-06",
+      "prompt": "Describe the kitchen of the house where you grew up.",
+      "people": [
+        "Mother",
+        "Simone"
+      ],
+      "highlight": true,
+      "segments": [
+        {
+          "text": "Oh, the kitchen. It was tiny, and it was always too hot.",
+          "start": 0.0,
+          "end": 5.051
+        },
+        {
+          "text": "There was a blue tiled wall behind the stove, and my mother had hung a calendar from the bakery, always on the wrong month.",
+          "start": 5.601,
+          "end": 14.052
+        },
+        {
+          "text": "At Easter she made the mouna, a big round brioche with orange blossom water.",
+          "start": 14.602,
+          "end": 19.942
+        },
+        {
+          "text": "The whole street could smell it. Simone, my best friend, used to come and sit on the step just to wait for the first slice.",
+          "start": 20.492,
+          "end": 29.475
+        },
+        {
+          "text": "I was not allowed to touch the dough. So of course I touched the dough.",
+          "start": 30.025,
+          "end": 35.03
+        },
+        {
+          "text": "My mother pretended not to see. She always pretended not to see.",
+          "start": 35.58,
+          "end": 40.874
+        },
+        {
+          "text": "Even now, when I smell orange blossom, I am seven years old again, on that little stool by the window.",
+          "start": 41.424,
+          "end": 49.354
+        }
+      ],
+      "duration": 49.9,
+      "audio": "kitchen",
+      "voice": "say"
+    },
+    {
+      "id": "dance",
+      "title": "The dance where I met Henri",
+      "theme": "Love",
+      "year": 1964,
+      "place": "Toulouse",
+      "call": 4,
+      "date": "2026-09-20",
+      "prompt": "Who played the music at the Saturday dance, and who did you go with?",
+      "people": [
+        "Henri",
+        "Marcel",
+        "Simone"
+      ],
+      "highlight": true,
+      "segments": [
+        {
+          "text": "It was a Saturday in June, at the dance hall in Saint-Cyprien. Simone dragged me there, I did not want to go.",
+          "start": 0.0,
+          "end": 8.451
+        },
+        {
+          "text": "Marcel played the accordion. He was terrible, but nobody cared, everybody danced anyway.",
+          "start": 9.001,
+          "end": 16.619
+        },
+        {
+          "text": "And there was this tall boy by the door who did not dance at all. He just watched.",
+          "start": 17.169,
+          "end": 22.96
+        },
+        {
+          "text": "After an hour he finally came to me and asked, very seriously, if I could teach him the waltz.",
+          "start": 23.51,
+          "end": 30.839
+        },
+        {
+          "text": "He stepped on my feet maybe twenty times. I counted.",
+          "start": 31.389,
+          "end": 36.325
+        },
+        {
+          "text": "At the end of the night he said, next Saturday I will be better. And he was not better. But he came back every Saturday.",
+          "start": 36.875,
+          "end": 46.482
+        },
+        {
+          "text": "That was Henri. We were married three years later, and he never learned to waltz.",
+          "start": 47.032,
+          "end": 53.043
+        }
+      ],
+      "duration": 53.59,
+      "audio": "dance",
+      "voice": "say"
+    },
+    {
+      "id": "classroom",
+      "title": "My first classroom",
+      "theme": "Work",
+      "year": 1966,
+      "place": "Ariège",
+      "call": 3,
+      "date": "2026-09-13",
+      "prompt": "Tell me about your very first day as a teacher.",
+      "people": [
+        "Pierrot"
+      ],
+      "highlight": false,
+      "segments": [
+        {
+          "text": "My first school was in a village in the Ariège mountains. One room, thirty-one children, from six years old to fourteen.",
+          "start": 0.0,
+          "end": 9.572
+        },
+        {
+          "text": "In winter I had to light the stove myself at seven in the morning, otherwise the ink froze in the inkwells.",
+          "start": 10.122,
+          "end": 17.37
+        },
+        {
+          "text": "On the first day, a little boy called Pierrot came in with a hedgehog in his coat pocket.",
+          "start": 17.92,
+          "end": 24.382
+        },
+        {
+          "text": "He said it was his cousin. The whole class laughed, and I laughed too, and that was the end of being a strict teacher.",
+          "start": 24.932,
+          "end": 33.186
+        },
+        {
+          "text": "I stayed in that village four years. I still receive a postcard from Pierrot every Christmas. He is a grandfather now.",
+          "start": 33.736,
+          "end": 42.996
+        }
+      ],
+      "duration": 43.55,
+      "audio": "classroom",
+      "voice": "say"
+    },
+    {
+      "id": "deux-cv",
+      "title": "The blue 2CV and the tractor",
+      "theme": "Adventures",
+      "year": 1976,
+      "place": "Collioure",
+      "call": 5,
+      "date": "2026-09-27",
+      "prompt": "Claire added a photo of you in front of a blue 2CV. Tell me about that day.",
+      "askedBy": "Claire",
+      "people": [
+        "Henri",
+        "Claire"
+      ],
+      "highlight": true,
+      "segments": [
+        {
+          "text": "Ah, Claire found that photo! That was the summer of seventy-six, the year it was so hot.",
+          "start": 0.0,
+          "end": 7.225
+        },
+        {
+          "text": "Henri decided we would drive to the sea at Collioure, with Claire who was two years old, in our little blue 2CV.",
+          "start": 7.775,
+          "end": 15.972
+        },
+        {
+          "text": "The car broke down in the middle of the vineyards. Nothing, nobody, just the cicadas.",
+          "start": 16.522,
+          "end": 23.215
+        },
+        {
+          "text": "And then a farmer arrived on his tractor, as if it was the most normal thing in the world, and he pulled us all the way to the village.",
+          "start": 23.765,
+          "end": 32.481
+        },
+        {
+          "text": "Claire sat on Henri's knees and she shouted at every car that passed. She thought it was the best day of her life.",
+          "start": 33.032,
+          "end": 41.047
+        },
+        {
+          "text": "We never saw the sea that day. But we ate peaches with the farmer's family, and honestly, it was better than the sea.",
+          "start": 41.597,
+          "end": 49.713
+        }
+      ],
+      "duration": 50.26,
+      "audio": "deux-cv",
+      "voice": "say"
+    },
+    {
+      "id": "bicycle",
+      "title": "Henri's bicycle to Barcelona",
+      "theme": "Love",
+      "year": 1965,
+      "place": "Toulouse to Barcelona",
+      "call": 5,
+      "date": "2026-09-27",
+      "prompt": "Lucas wants to know: did Grandpa ever do something crazy when he was young?",
+      "askedBy": "Lucas",
+      "people": [
+        "Henri",
+        "Lucas"
+      ],
+      "highlight": false,
+      "segments": [
+        {
+          "text": "Lucas asked that? Oh, he will like this one.",
+          "start": 0.0,
+          "end": 4.068
+        },
+        {
+          "text": "The summer after we met, I went to Barcelona for a month, to help my aunt in her shop.",
+          "start": 4.618,
+          "end": 10.988
+        },
+        {
+          "text": "Henri had no money for the train. So he took his bicycle. Toulouse to Barcelona, over the Pyrenees, on a bicycle with three gears.",
+          "start": 11.538,
+          "end": 22.082
+        },
+        {
+          "text": "It took him five days. He arrived at my aunt's shop completely burnt by the sun, with one shoe.",
+          "start": 22.632,
+          "end": 30.146
+        },
+        {
+          "text": "My aunt looked at him and said to me, in Spanish, this one, you keep him.",
+          "start": 30.696,
+          "end": 36.302
+        },
+        {
+          "text": "So tell Lucas: his grandfather was not crazy. He was in love. It is almost the same thing.",
+          "start": 36.852,
+          "end": 45.21
+        }
+      ],
+      "duration": 45.76,
+      "audio": "bicycle",
+      "voice": "say"
+    },
+    {
+      "id": "claire-born",
+      "title": "The night Claire was born",
+      "theme": "Family",
+      "year": 1974,
+      "place": "Toulouse",
+      "call": 1,
+      "date": "2026-08-30",
+      "prompt": "What do you remember about the day your first child was born?",
+      "people": [
+        "Claire",
+        "Henri"
+      ],
+      "highlight": false,
+      "segments": [
+        {
+          "text": "Claire was born in March, during the biggest storm of the year. All the lights in the street went out.",
+          "start": 0.0,
+          "end": 7.149
+        },
+        {
+          "text": "Henri drove me to the hospital with one hand on the wheel and the other holding an umbrella out of the window, I still do not know why.",
+          "start": 7.699,
+          "end": 16.531
+        },
+        {
+          "text": "She arrived at four in the morning, very small and very angry.",
+          "start": 17.081,
+          "end": 21.716
+        },
+        {
+          "text": "The nurse said, this one will have opinions. And she was right, Claire has had opinions ever since.",
+          "start": 22.266,
+          "end": 29.665
+        },
+        {
+          "text": "When they put her in my arms, the electricity came back, all at once. Henri said it was a sign. He said that about everything.",
+          "start": 30.215,
+          "end": 40.596
+        }
+      ],
+      "duration": 41.15,
+      "audio": "claire-born",
+      "voice": "say"
+    }
+  ]
+}
