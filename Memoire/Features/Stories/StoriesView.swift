@@ -106,13 +106,15 @@ struct StoryPlayerView: View {
                                 let active = current && player.activeSegmentIndex == i
                                 let past = current && (player.activeSegmentIndex ?? -1) > i
                                 Text(seg.text)
-                                    .font(.story(active ? 23 : 21, active ? .semibold : .regular))
+                                    .font(.story(21))
+                                    .fontWeight(active ? .semibold : .regular)
                                     .foregroundStyle(active ? Theme.ink : (past ? Theme.inkSoft.opacity(0.55) : Theme.inkSoft.opacity(current ? 0.45 : 0.9)))
                                     .lineSpacing(5)
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                     .id(i)
                                     .contentShape(Rectangle())
                                     .onTapGesture { player.play(story, from: seg.start) }
+                                    .scaleEffect(active ? 1.02 : 1, anchor: .leading)
                                     .animation(.easeInOut(duration: 0.3), value: active)
                             }
                         }
@@ -150,7 +152,7 @@ struct StoryPlayerView: View {
             }
             Text(story.title).font(.display(24, .bold)).foregroundStyle(Theme.ink).multilineTextAlignment(.center)
             HStack(spacing: 8) {
-                Label("\(story.place), \(story.year > 0 ? String(story.year) : "")", systemImage: "mappin.and.ellipse")
+                Label(story.year > 0 ? "\(story.place), \(story.year)" : story.place, systemImage: "mappin.and.ellipse")
                 if story.chapter != nil {
                     Button(showChapter ? "Transcript" : "Chapter") { withAnimation { showChapter.toggle() } }
                         .font(.ui(12, .semibold)).padding(.horizontal, 10).padding(.vertical, 4)
@@ -166,7 +168,7 @@ struct StoryPlayerView: View {
 
     private var promptCard: some View {
         HStack(alignment: .top, spacing: 12) {
-            Avatar(person: AvatarSpec(name: story.askedBy.map { "\($0) M" } ?? "Louise AI", colors: story.askedBy == nil ? [Theme.blueSky, Theme.blue] : [Color(hex: 0xB9A6FF), Theme.purple]), size: 34)
+            Avatar(person: AvatarSpec(name: story.askedBy.map { "\($0) M" } ?? "Louise", colors: story.askedBy == nil ? [Theme.blueSky, Theme.blue] : [Color(hex: 0xB9A6FF), Theme.purple]), size: 34)
             VStack(alignment: .leading, spacing: 3) {
                 Text(story.askedBy.map { "\($0) asked, through Louise" } ?? "Louise asked")
                     .font(.ui(12, .semibold)).foregroundStyle(Theme.mute)

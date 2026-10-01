@@ -69,7 +69,7 @@ struct HomeView: View {
 
             HStack(spacing: 10) {
                 Button { askingQuestion = true } label: {
-                    Label("Add question", systemImage: "plus").lineLimit(1).frame(maxWidth: .infinity)
+                    Label("Question", systemImage: "plus").lineLimit(1).frame(maxWidth: .infinity)
                 }
                 .buttonStyle(PillButtonStyle(fill: .white.opacity(0.95)))
                 Button { showPlan = true } label: {

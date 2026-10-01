@@ -54,6 +54,10 @@ final class LiveAudioIO: @unchecked Sendable {
     /// Test hook (`-feedAudio /path/file.wav`): streams a recording as if it were the microphone,
     /// so the full call → chapter pipeline can be exercised without a human on the simulator.
     private var feedTimer: DispatchSourceTimer?
+    private var feedPlayer: AVAudioPlayer?
+    private var modelHasSpoken: Bool { lock.withLock { _modelHasSpoken } }
+    private var _modelHasSpoken = false
+    private var playbackEnd = Date.distantPast
     private func startFeed(path: String) {
         guard let file = try? AVAudioFile(forReading: URL(fileURLWithPath: path)),
               let conv = AVAudioConverter(from: file.processingFormat, to: sendFormat) else { return }
@@ -68,11 +72,27 @@ final class LiveAudioIO: @unchecked Sendable {
             fed = true; status.pointee = .haveData; return src
         }
         var offset = 0
+        var quietTicks = 0
+        var feeding = false
         let chunk = 1600 // 100 ms
+        let audible = try? AVAudioPlayer(contentsOf: URL(fileURLWithPath: path))
+        feedPlayer = audible
         let timer = DispatchSource.makeTimerSource(queue: .global())
-        timer.schedule(deadline: .now() + 4, repeating: .milliseconds(100))
+        timer.schedule(deadline: .now() + 1, repeating: .milliseconds(100))
         timer.setEventHandler { [weak self] in
             guard let self, let samples = all.int16ChannelData?[0] else { return }
+            // Answer like a person would: once the biographer has finished her question.
+            if !feeding {
+                let (spoke, end) = self.lock.withLock { (self._modelHasSpoken, self.playbackEnd) }
+                if spoke && Date() > end.addingTimeInterval(0.8) { quietTicks += 1 } else { quietTicks = 0 }
+                if quietTicks < 3 {
+                    var silence = [Int16](repeating: 0, count: chunk)
+                    self.onChunk?(Data(bytes: &silence, count: chunk * 2), 0)
+                    return
+                }
+                feeding = true
+                DispatchQueue.main.async { audible?.play() }
+            }
             let n = min(chunk, Int(all.frameLength) - offset)
             if n <= 0 {
                 // keep streaming silence so the server VAD can close the turn
@@ -97,6 +117,7 @@ final class LiveAudioIO: @unchecked Sendable {
     func stop() {
         feedTimer?.cancel()
         feedTimer = nil
+        feedPlayer?.stop()
         engine.inputNode.removeTap(onBus: 0)
         player.stop()
         engine.stop()
@@ -147,7 +168,10 @@ final class LiveAudioIO: @unchecked Sendable {
             }
         }
         onOutputLevel?(min(1, peak * 1.6))
-        lock.withLock { pendingBuffers += 1 }
+        lock.withLock {
+            pendingBuffers += 1; _modelHasSpoken = true
+            playbackEnd = max(playbackEnd, Date()).addingTimeInterval(Double(frames) / 24000)
+        }
         player.scheduleBuffer(buf) { [weak self] in
             guard let self else { return }
             let left = self.lock.withLock { () -> Int in self.pendingBuffers = max(0, self.pendingBuffers - 1); return self.pendingBuffers }
@@ -333,7 +357,9 @@ final class GeminiLiveSession {
                 storytellerTurns[storytellerTurns.count - 1].text += t
                 storytellerTurns[storytellerTurns.count - 1].end = now
             } else {
-                storytellerTurns.append(Turn(text: t, start: max(0, now - 1.5), end: now))
+                // The archive recording is gated to the storyteller's side, so a new turn's audio
+                // begins where the previous one ended.
+                storytellerTurns.append(Turn(text: t, start: storytellerTurns.last?.end ?? 0, end: now))
                 openTurn = true
             }
         }
