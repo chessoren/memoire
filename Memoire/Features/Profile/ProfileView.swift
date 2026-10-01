@@ -103,10 +103,10 @@ struct ProfileView: View {
                       tint: purchases.isFamilyActive ? Theme.green : Theme.purple,
                       wash: purchases.isFamilyActive ? Theme.greenWash : Theme.purpleWash, size: 44)
             VStack(alignment: .leading, spacing: 3) {
-                Text(purchases.isFamilyActive ? "Mémoire Family · active" : "Free welcome call")
+                Text(purchases.isFamilyActive ? "Family plan active" : "Free welcome call")
                     .font(.ui(16, .semibold)).foregroundStyle(Theme.ink)
                 Text(purchases.isFamilyActive
-                     ? (purchases.expirationDate.map { "Until \($0.formatted(date: .abbreviated, time: .omitted)) · no auto-renew" } ?? "Lifetime")
+                     ? (purchases.expirationDate.map { "Renews \($0.formatted(date: .abbreviated, time: .omitted)) · via RevenueCat" } ?? "Lifetime archive")
                      : "Unlock 52 calls and the archive")
                     .font(.ui(13)).foregroundStyle(Theme.mute)
             }
