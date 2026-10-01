@@ -1,0 +1,230 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112..125,500..900&family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400;1,6..72,500&display=block" rel="stylesheet">
+<style>
+:root{--blue:#1A86FF;--deep:#0A6CF0;--sky:#6CB8FF;--mist:#D9ECFF;--wash:#EEF6FF;--canvas:#F3F6FB;--ink:#12151C;--soft:#3B4250;--mute:#8A93A3;--orange:#FF8A3D;--green:#2FC46B;--red:#EE2E2E;--purple:#8B6CFF}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1800px;height:1200px;overflow:hidden;background:var(--canvas)}
+body{font-family:Inter,system-ui,sans-serif;color:var(--ink)}
+.slide{display:none;width:1800px;height:1200px;position:relative;overflow:hidden;padding:96px 110px;background:var(--canvas)}
+.slide.on{display:block}
+.disp{font-family:Archivo,sans-serif;font-stretch:125%;font-weight:800;letter-spacing:-0.02em;line-height:1.02}
+.serif{font-family:Newsreader,serif}
+.kicker{font-family:Inter;font-weight:700;font-size:22px;letter-spacing:.18em;text-transform:uppercase;color:var(--blue);margin-bottom:22px}
+h1{font-size:92px}
+h2{font-size:64px;margin-bottom:28px}
+p.lead{font-size:30px;line-height:1.45;color:var(--soft);max-width:900px}
+.blue-bg{background:linear-gradient(180deg,#0E7BFF 0%,#3D9DFF 55%,#9FD0FF 100%);color:#fff}
+.blue-bg .kicker{color:rgba(255,255,255,.8)}
+.blue-bg p.lead{color:rgba(255,255,255,.9)}
+.phone{position:absolute;width:390px;border-radius:58px;background:#12151C;padding:12px;box-shadow:0 40px 80px rgba(16,40,90,.28)}
+.phone img{width:100%;display:block;border-radius:47px}
+.card{background:#fff;border-radius:32px;padding:38px 40px;box-shadow:0 18px 40px rgba(27,58,107,.07)}
+.card h3{font-family:Archivo;font-stretch:120%;font-weight:750;font-size:32px;margin-bottom:14px;line-height:1.1}
+.card p{font-size:23px;line-height:1.5;color:var(--soft)}
+.badge{display:inline-flex;align-items:center;justify-content:center;width:64px;height:64px;border-radius:20px;font-size:32px;margin-bottom:22px}
+.pill{display:inline-block;padding:12px 24px;border-radius:999px;background:rgba(255,255,255,.2);color:#fff;font-weight:600;font-size:22px;margin:0 10px 10px 0}
+.pill.l{background:#fff;color:var(--blue)}
+.brand{position:absolute;left:110px;bottom:56px;display:flex;align-items:center;gap:14px;font-family:Archivo;font-stretch:125%;font-weight:800;font-size:26px;color:var(--mute)}
+.brand i{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,#0A73FF,#6CB8FF);display:inline-block}
+.blue-bg .brand{color:rgba(255,255,255,.85)}
+.num{position:absolute;right:110px;bottom:56px;font-weight:600;font-size:22px;color:var(--mute)}
+.blue-bg .num{color:rgba(255,255,255,.8)}
+ul.b{list-style:none}
+ul.b li{font-size:25px;line-height:1.45;color:var(--soft);padding-left:46px;position:relative;margin-bottom:20px}
+ul.b li:before{content:"✓";position:absolute;left:0;top:2px;width:30px;height:30px;border-radius:50%;background:var(--wash);color:var(--blue);font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center}
+ul.b li b{color:var(--ink)}
+.quote{font-family:Newsreader;font-style:italic;font-size:38px;line-height:1.35}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:34px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:34px}
+.ring{position:absolute;border:2px solid rgba(255,255,255,.28);border-radius:50%}
+.dot{position:absolute;border-radius:50%;background:var(--orange)}
+code{font-family:"SF Mono",Menlo,monospace;font-size:.88em;background:var(--wash);color:var(--deep);padding:2px 8px;border-radius:8px}
+</style></head>
+<body>
+
+<!-- 1 · Title -->
+<section class="slide blue-bg" id="s1">
+  <div class="ring" style="width:1400px;height:1400px;right:-420px;top:-150px"></div>
+  <div class="ring" style="width:1000px;height:1000px;right:-220px;top:50px"></div>
+  <div class="ring" style="width:620px;height:620px;right:-30px;top:240px"></div>
+  <div class="dot" style="width:26px;height:26px;right:640px;top:210px"></div>
+  <div class="dot" style="width:18px;height:18px;right:180px;top:880px"></div>
+  <div style="display:flex;align-items:center;gap:22px;margin-bottom:70px">
+    <img src="../Memoire/Resources/Assets.xcassets/AppIcon.appiconset/icon-1024.png" style="width:96px;height:96px;border-radius:24px;box-shadow:0 12px 30px rgba(0,0,0,.18)">
+    <span class="disp" style="font-size:54px">Mémoire</span>
+  </div>
+  <h1 class="disp" style="max-width:760px;font-size:72px">Every Sunday, an AI biographer calls your grandmother.</h1>
+  <p class="lead serif" style="font-size:38px;margin-top:34px;font-style:italic;max-width:720px">Twenty years from now, your kids can still hear her tell it.</p>
+  <div style="position:absolute;left:110px;bottom:120px">
+    <span class="pill l">Shipaton 2026 · Next Gen</span><span class="pill">iOS · SwiftUI</span><span class="pill">Gemini Live</span><span class="pill">RevenueCat</span>
+  </div>
+  <div class="phone" style="right:470px;top:150px;transform:rotate(-6deg)"><img src="shots/listen.png"></div>
+  <div class="phone" style="right:90px;top:230px;transform:rotate(5deg)"><img src="shots/call.png"></div>
+</section>
+
+<!-- 2 · Problem -->
+<section class="slide" id="s2">
+  <div class="kicker">The problem</div>
+  <h2 class="disp" style="max-width:1400px">Every family wants to keep Grandma's stories. Almost none do.</h2>
+  <p class="lead" style="margin-bottom:56px">Nobody is against it. The friction is on both sides of the table.</p>
+  <div class="grid2" style="margin-bottom:40px">
+    <div class="card"><div class="badge" style="background:#EEF6FF">🧑‍💻</div><h3>The kids</h3><p>Don't dare, don't have time, don't know what to ask. “We’ll do it next Christmas.” Family dinners are not a two-hour interview.</p></div>
+    <div class="card"><div class="badge" style="background:#FFEFE3">👵</div><h3>The grandparents</h3><p>Writing is hard at 85. Apps and emails are a wall. A blank page is intimidating, and “my life isn’t interesting anyway”.</p></div>
+  </div>
+  <div class="card" style="background:linear-gradient(135deg,#1384FF,#4FA8FF);color:#fff;display:flex;gap:40px;align-items:center">
+    <div class="disp" style="font-size:72px;white-space:nowrap">1M+</div>
+    <p style="font-size:25px;line-height:1.5;color:rgba(255,255,255,.95)">books printed by StoryWorth with one emailed question a week. The demand is proven. But a question in an inbox is still a blank page, and nobody asks the follow-up: <i class="serif" style="font-size:28px">“wait, what was that soldier’s name?”</i></p>
+  </div>
+  <div class="brand"><i></i>Mémoire</div><div class="num">2</div>
+</section>
+
+<!-- 3 · Insight -->
+<section class="slide" id="s3" style="padding-top:170px">
+  <div class="kicker">The insight</div>
+  <h2 class="disp" style="max-width:1300px">Three things we built everything around.</h2>
+  <div class="grid3" style="margin-top:60px">
+    <div class="card" style="height:470px"><div class="badge" style="background:#EEF6FF">💬</div><h3>A conversation, not a form.</h3><p>A good biographer gets ten times more than a questionnaire because she listens, follows up and comes back to what was said last week. AI voice can now do that every Sunday for the price of a subscription.</p></div>
+    <div class="card" style="height:470px"><div class="badge" style="background:#E3F8EC">📞</div><h3>The phone is the perfect interface.</h3><p>Grandparents have mastered the telephone for sixty years. A call on Sunday afternoon is already a ritual. Mémoire doesn't invent a new habit. They install nothing. They just pick up.</p></div>
+    <div class="card" style="height:470px"><div class="badge" style="background:#FFEFE3">🎙️</div><h3>The voice is the product.</h3><p>A book tells what Grandma lived. Her voice, her laugh, her accent, her pauses: that <i>is</i> Grandma. Families who lose someone say it's what they miss most. Mémoire keeps it while there's still time.</p></div>
+  </div>
+  <div class="brand"><i></i>Mémoire</div><div class="num">3</div>
+</section>
+
+<!-- 4 · How it works -->
+<section class="slide" id="s4" style="padding-top:70px">
+  <div class="kicker">How it works</div>
+  <h2 class="disp">Gift it once. Hear her every week.</h2>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:60px;margin-top:24px;padding:0 20px">
+    <div><div class="phone" style="position:relative;width:86%;margin:0 auto;transform:none"><img src="shots/announce.png"></div><h3 class="disp" style="font-size:27px;margin-top:24px">1 · Gift it</h3><p style="font-size:20px;color:var(--soft);margin-top:6px;line-height:1.4">Her child writes a 4-minute portrait: places, work, topics to avoid, call time.</p></div>
+    <div><div class="phone" style="position:relative;width:86%;margin:0 auto;transform:none"><img src="shots/call-illu.png"></div><h3 class="disp" style="font-size:27px;margin-top:24px">2 · Louise calls</h3><p style="font-size:20px;color:var(--soft);margin-top:6px;line-height:1.4">Every Sunday, an AI biographer phones her and asks about her life.</p></div>
+    <div><div class="phone" style="position:relative;width:86%;margin:0 auto;transform:none"><img src="shots/player.png"></div><h3 class="disp" style="font-size:27px;margin-top:24px">3 · The family listens</h3><p style="font-size:20px;color:var(--soft);margin-top:6px;line-height:1.4">That night: her real voice, the transcript in sync, a chapter for the book.</p></div>
+    <div><div class="phone" style="position:relative;width:86%;margin:0 auto;transform:none"><img src="shots/ask.png"></div><h3 class="disp" style="font-size:27px;margin-top:24px">4 · Ask, she answers</h3><p style="font-size:20px;color:var(--soft);margin-top:6px;line-height:1.4">“How did Grandma meet Grandpa?” The answer is her, saying it.</p></div>
+  </div>
+  <div class="num">4</div>
+</section>
+
+<!-- 5 · Louise -->
+<section class="slide blue-bg" id="s5">
+  <div class="ring" style="width:900px;height:900px;right:-160px;top:150px"></div>
+  <div class="ring" style="width:600px;height:600px;right:-10px;top:300px"></div>
+  <div class="kicker">The biographer</div>
+  <h2 class="disp" style="max-width:1000px">Louise listens like a person, and remembers like a notebook.</h2>
+  <div style="max-width:960px;margin-top:20px">
+    <div class="quote" style="margin-bottom:40px">“That is such a beautiful memory, Jeanne. What was the name of the street where the bakery was located?”</div>
+    <ul class="b">
+      <li style="color:#fff"><b style="color:#fff">Real-time voice</b> with Gemini Live (<code style="background:rgba(255,255,255,.2);color:#fff">gemini-3.8-live-extended-thinking</code>) over a raw WebSocket. No SDK.</li>
+      <li style="color:#fff"><b style="color:#fff">Patient turn-taking</b> for elderly speakers who pause mid-sentence: low end-of-speech sensitivity, 1.6 s of silence.</li>
+      <li style="color:#fff"><b style="color:#fff">Oral-history method:</b> concrete before abstract, follow-up on details, always ask names, thread between calls, never raise the topics the family flagged.</li>
+      <li style="color:#fff"><b style="color:#fff">Honest by design:</b> says she's an AI, asks consent to record, is never a companion.</li>
+    </ul>
+  </div>
+  <div class="phone" style="right:120px;top:130px;width:440px"><img src="shots/call.png"></div>
+  <div class="brand"><i style="background:#fff"></i>Mémoire</div><div class="num">5</div>
+</section>
+
+<!-- 6 · After the call -->
+<section class="slide" id="s6">
+  <div class="kicker">After the call</div>
+  <h2 class="disp" style="max-width:700px;font-size:58px">A chapter in her own words. Nothing added.</h2>
+  <p class="lead" style="max-width:700px;margin-bottom:44px;font-size:27px">When the call ends, Gemini 3.8 Flash (high thinking, JSON schema) turns the transcript into a chapter. It cleans the hesitations, keeps her expressions, and is forbidden to add a fact, a name or a date.</p>
+  <ul class="b" style="max-width:700px">
+    <li><b>Her voice is recorded, not the AI's.</b> The archive keeps only the storyteller's side, with a timestamp for every turn.</li>
+    <li><b>People, places and years</b> go into a living dossier Louise reads before the next call.</li>
+    <li><b>Never lose a recording.</b> If Gemini is overloaded, it falls back to lighter models, and if all fail, the voice is saved and the chapter waits.</li>
+  </ul>
+  <div class="phone" style="right:520px;top:170px;width:350px;transform:rotate(-4deg)"><img src="shots/writing.png"></div>
+  <div class="phone" style="right:120px;top:120px;width:400px;transform:rotate(3deg)"><img src="shots/chapter.png"></div>
+  <div class="brand"><i></i>Mémoire</div><div class="num">6</div>
+</section>
+
+<!-- 7 · Archive -->
+<section class="slide" id="s7">
+  <div class="phone" style="left:150px;top:110px;width:440px;transform:rotate(-3deg)"><img src="shots/ask.png"></div>
+  <div style="margin-left:620px">
+    <div class="kicker">The voice archive</div>
+    <h2 class="disp">Ask anything. Her real voice answers.</h2>
+    <p class="lead" style="margin-bottom:44px">A grandson types “How did Grandma meet Grandpa?” Mémoire finds the passage where she tells it, plays exactly those seconds, and highlights each sentence as she says it.</p>
+    <ul class="b">
+      <li><b>Searched on the iPhone</b> with Apple's NaturalLanguage sentence embeddings over timestamped segments. Her stories don't leave the family to answer a question.</li>
+      <li><b>It never generates an answer.</b> Every result is a real excerpt of a real call.</li>
+      <li><b>Not there yet?</b> One tap sends the question to Louise for next Sunday.</li>
+    </ul>
+  </div>
+  <div class="num">7</div>
+</section>
+
+<!-- 8 · RevenueCat -->
+<section class="slide" id="s8">
+  <div class="kicker">Business · RevenueCat</div>
+  <h2 class="disp" style="max-width:1000px">The buyer isn't the user. The paywall knows it.</h2>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:34px;max-width:1150px;margin-top:20px">
+    <div class="card"><h3>Sold as a gift</h3><p>Her child pays; she just picks up. One <code>family</code> entitlement unlocks calls, chapters and the archive for everyone.</p></div>
+    <div class="card"><h3>Paywall after the portrait</h3><p>It comes once the buyer has written their mother's portrait. A free welcome call lets them hear it work first.</p></div>
+    <div class="card"><h3>One offering, three packages</h3><p>The Gift (annual), Monthly, Lifetime archive, all loaded from RevenueCat, so prices can be A/B tested without an update.</p></div>
+    <div class="card"><h3>Listening stays free</h3><p>Every invited relative has grandparents of their own. Charging them to listen would break the growth loop.</p></div>
+  </div>
+  <p style="font-size:21px;color:var(--mute);margin-top:34px;max-width:1150px;line-height:1.5"><code>customerInfoStream</code> · customer attributes (who the gift is for) · Customer Center · restore · Test Store so anyone can buy in the simulator · the printed book is paid on the web, as Apple requires for physical goods.</p>
+  <div class="phone" style="right:110px;top:110px;width:400px"><img src="shots/paywall.png"></div>
+  <div class="brand"><i></i>Mémoire</div><div class="num">8</div>
+</section>
+
+<!-- 9 · Red line -->
+<section class="slide" id="s9" style="padding-top:190px">
+  <div class="kicker" style="color:var(--red)">Our red line</div>
+  <h2 class="disp" style="max-width:1400px">We never clone her voice. Not even after she's gone.</h2>
+  <div class="grid3" style="margin-top:50px;grid-template-columns:repeat(5,1fr);gap:24px">
+    <div class="card" style="padding:32px"><div class="badge" style="background:#FFF1F1">🚫</div><h3 style="font-size:26px">No synthetic voice</h3><p style="font-size:20px">Every archive answer is a real excerpt.</p></div>
+    <div class="card" style="padding:32px"><div class="badge" style="background:#EEF6FF">🤖</div><h3 style="font-size:26px">Says it's an AI</h3><p style="font-size:20px">From the first call, as the EU AI Act requires.</p></div>
+    <div class="card" style="padding:32px"><div class="badge" style="background:#E3F8EC">🎙️</div><h3 style="font-size:26px">Spoken consent</h3><p style="font-size:20px">Recording starts only after she agrees aloud.</p></div>
+    <div class="card" style="padding:32px"><div class="badge" style="background:#F0EBFF">✋</div><h3 style="font-size:26px">She stays in control</h3><p style="font-size:20px">“Keep that out of the book.” “Stop the calls.” Done.</p></div>
+    <div class="card" style="padding:32px"><div class="badge" style="background:#FFEFE3">🫶</div><h3 style="font-size:26px">Not a companion</h3><p style="font-size:20px">Louise sends her back to her real family.</p></div>
+  </div>
+  <p class="lead" style="margin-top:46px;max-width:1300px">Topics the family marks as sensitive are never raised. Hosted in the EU, exportable in one gesture, and a named guardian inherits the archive.</p>
+  <div class="brand"><i></i>Mémoire</div><div class="num">9</div>
+</section>
+
+<!-- 10 · Why us + next -->
+<section class="slide" id="s10" style="padding-top:170px">
+  <div class="kicker">Why Mémoire</div>
+  <h2 class="disp" style="max-width:1500px">“An AI that calls Grandma” already exists. Ours is different.</h2>
+  <div class="grid2" style="margin-top:40px">
+    <div class="card">
+      <h3>Tell Mel, LifeLoom, StoriesFrom, Storii…</h3>
+      <p>US websites centred on the book. The grandparent talks; the family receives a PDF at the end.</p>
+      <ul class="b" style="margin-top:30px">
+        <li><b>A native iOS app the whole family lives in:</b> questions, votes, reactions, the voice archive.</li>
+        <li><b>Built for Europe:</b> EU hosting, GDPR, euros, local printing.</li>
+        <li><b>The voice is the product,</b> not a by-product of the text.</li>
+      </ul>
+    </div>
+    <div class="card" style="background:linear-gradient(135deg,#1384FF,#4FA8FF);color:#fff">
+      <h3>What's next</h3>
+      <ul class="b" style="margin-top:20px">
+        <li style="color:#fff"><b style="color:#fff">A real phone line</b> (Twilio or Telnyx, a French number). Today Louise talks in the app's test call.</li>
+        <li style="color:#fff"><b style="color:#fff">EU backend</b> for families, sharing and the living dossier.</li>
+        <li style="color:#fff"><b style="color:#fff">Five real grandparents first.</b> Success means 4 of 5 say yes to a second call.</li>
+        <li style="color:#fff"><b style="color:#fff">The printed book</b> with a QR code to her voice in every chapter.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="brand"><i></i>Mémoire</div><div class="num">10</div>
+</section>
+
+<!-- 11 · Closing -->
+<section class="slide blue-bg" id="s11" style="display:none;text-align:center;padding-top:250px">
+  <div class="ring" style="width:1500px;height:1500px;left:150px;top:-150px"></div>
+  <div class="ring" style="width:1000px;height:1000px;left:400px;top:100px"></div>
+  <div class="ring" style="width:560px;height:560px;left:620px;top:320px"></div>
+  <img src="../Memoire/Resources/Assets.xcassets/AppIcon.appiconset/icon-1024.png" style="width:150px;height:150px;border-radius:36px;box-shadow:0 20px 50px rgba(0,0,0,.2);margin-bottom:56px">
+  <h1 class="disp" style="font-size:84px;max-width:1400px;margin:0 auto">Not “before it’s too late”.</h1>
+  <p class="serif" style="font-size:52px;font-style:italic;margin-top:24px">While you still have the chance to hear her.</p>
+  <p style="font-size:28px;margin-top:80px;color:rgba(255,255,255,.9);font-weight:600">github.com/chessoren/memoire &nbsp;·&nbsp; Shipaton 2026 · Next Gen Award</p>
+</section>
+
+<script>
+const n = new URLSearchParams(location.search).get('s') || '1';
+document.querySelectorAll('.slide').forEach(s => s.style.display = 'none');
+const el = document.getElementById('s' + n); el.style.display = 'block';
+</script>
+</body></html>
